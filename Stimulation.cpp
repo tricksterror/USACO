@@ -35,7 +35,8 @@ signed main()
         return 0;
 }
 
-Censoring  http://www.usaco.org/index.php?page=viewproblem2&cpid=526
+// Censoring  http://www.usaco.org/index.php?page=viewproblem2&cpid=526
+
 //tle soluition
 
 #include <bits/stdc++.h>
