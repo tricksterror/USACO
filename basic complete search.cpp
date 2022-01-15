@@ -38,3 +38,60 @@ signed main()
         solve();
         return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve() {
+        int n, m;
+        cin >> n >> m;
+        vector<string> a(2*n);
+        for (int i = 0; i < (2*n); i++) {
+                cin >> a[i];
+        }
+        int ans;
+        for (int i = 0; i < m; i++) {
+                set<char> s, ns;
+                for (int j = 0; j < (2*n); j++) {
+                        if (j < n) s.insert(a[j][i]);
+                        else ns.insert(a[j][i]);
+                }
+                bool ok = false;
+                for (char x : s) {
+                        if (ns.count(x) != 0) {
+                                ok = true;
+                                break;
+                        }
+                }
+                if (!ok) {
+                        ans = i;
+                        break;
+                }
+        }
+        cout << ans << "\n";
+}
+
+signed main()
+{
+        std::ios_base::sync_with_stdio(NULL);
+        cin.tie(nullptr); cout.tie(nullptr);
+
+        freopen("cownomics.in", "r", stdin);
+        freopen("cownomics.out", "w", stdout);
+
+        solve();
+        return 0;
+}
