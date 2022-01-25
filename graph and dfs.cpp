@@ -53,3 +53,53 @@ signed main()
         cout << root << "\n";
         return 0;
 }
+
+//Building Roads  https://cses.fi/problemset/task/1666/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5+10;
+vector<int> g[N];
+vector<bool> vis(N, false);
+
+vector<vector<int>> cc;
+vector<int> current_cc;
+
+void dfs(int vertex) {
+        vis[vertex] = true;
+        current_cc.push_back(vertex);
+        for (int child : g[vertex]) {
+                if (vis[child]) continue;
+                dfs(child);
+       }
+}
+
+signed main()
+{
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        #ifndef ONLINE_JUDGE
+        freopen("inputf.in", "r", stdin);
+        #endif
+        
+        int n,m;
+        cin >> n >> m;
+        for (int i = 0; i < m; ++i) {
+                int v1, v2; 
+                cin >> v1 >> v2;
+                g[v1].push_back(v2); 
+                g[v2].push_back(v1);
+        }
+        for (int i = 1; i <= n; i++) {
+                if(vis[i]) continue;
+                current_cc.clear();
+                dfs(i); 
+                cc.push_back(current_cc);
+        }
+        cout << cc.size() - 1 << "\n";
+        for (int i = 1; i < cc.size(); i++) {
+                cout << cc[i-1][0] << " " << cc[i][0] << "\n";
+        } 
+        return 0;
+}
